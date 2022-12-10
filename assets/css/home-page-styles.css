@@ -1,5 +1,5 @@
-@import url('/assets/css/reset.css');
-@import url('/assets/css/global.css');
+@import url('reset.css');
+@import url('global.css');
 
 body {
   background-color: var(--primary-color);
@@ -7,7 +7,7 @@ body {
 
 body::before {
   content: "";
-  background-image: url("/assets/images/spider-man-background.jpg");
+  background-image: url('../images/spider-man-background.jpg');
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
@@ -15,8 +15,9 @@ body::before {
   height: 100%;
   position: absolute;
   opacity: 0.2;
-  transition: background-image 1s ease-in-out , opacity 1s ease-in-out;
+  transition: background-image 1s ease-in-out, opacity 1s ease-in-out;
 }
+
 .s-menu {
   padding: 1rem 0;
   width: 100%;
@@ -38,17 +39,30 @@ body::before {
 
 .s-container {
   position: relative;
-  display:flex;
+  display: flex;
   align-items: center;
   justify-content: space-evenly;
+  perspective: 3000px;
 }
 
 .s-card {
-  border: 0.5rem solid #ffff;
-  width: calc(100% / 3 - 8%);
+  border: 0.5rem solid white;
+  width: 100%;
   height: 70vh;
-  position: relative;
+  position: absolute;
   transition: filter .5s ease-in-out;
+}
+
+.s-card:nth-child(1) {
+  transform: rotateY(0deg) translateZ(50vw);
+}
+
+.s-card:nth-child(2) {
+  transform: rotateY(120deg) translateZ(50vw);
+}
+
+.s-card:nth-child(3) {
+  transform: rotateY(240deg) translateZ(50vw);
 }
 
 .s-card__background {
@@ -79,11 +93,13 @@ body::before {
 }
 
 .s-controller {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
+  bottom: 1.5rem;
+  width: 100%;
 }
 
 .s-controller__button {
@@ -92,7 +108,7 @@ body::before {
   justify-content: center;
   width: 2.5rem;
   height: 2.5rem;
-  border: 2px solid #ffff;
+  border: 2px solid white;
   border-radius: 50%;
   background-color: var(--primary-color);
   text-align: center;
@@ -102,22 +118,25 @@ body::before {
   z-index: 1;
   transition: transform 0.3s ease-in-out;
 }
+
 .s-controller__button:hover {
-  transform: scale(1.5);
+  transform: scale(1.1);
 }
 
 .s-controller__button:nth-child(2) {
   margin: 0 3.75rem;
 }
+
 .s-controller__button--active {
   background-color: white;
   color: var(--primary-color);
   border: 0.1875rem solid var(--primary-color);
   outline: 0.125rem solid white;
 }
+
 .s-controller__line {
   background-color: white;
-  width:50%;
+  width: 50%;
   height: 2px;
   position: absolute;
 }
@@ -131,8 +150,7 @@ body::before {
 
 .s-card--hovered .s-card__image {
   transform: scale(1.4);
-  filter: drop-shadow(30px 10px rgba(0,0,0, .5))
-  
+  filter: drop-shadow(30px 10px 4px rgba(0, 0, 0, .5));
 }
 
 body#spider-man-01-hovered::before {
@@ -157,4 +175,12 @@ body[id^="spider-man-"] .s-card:not(.s-card--hovered) {
 
 .s-card--hovered .s-card__title {
   bottom: 50%;
+}
+
+.s-cards-carousel {
+  display: flex;
+  justify-content: center;
+  width: calc(100vw / 3 - 10%);
+  transform-style: preserve-3d;
+  transition: transform 0.4s ease-in;
 }
